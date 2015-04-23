@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>Switcher</title>
+	<meta charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href="css/switcher.css">
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/switcher.js"></script>
+</head>
+
+<script>
+
+
+			window.onload = function(){
+
+				$('.gender :radio').switcher({
+				// dir:'ltr',
+				// reverse: true,
+				theme: 'light',
+				// width: 70,
+				blobOffset: 0,
+				// inputs: true,
+
+
+				})
+				// Listen to status changes
+				.on( 'turnon.switcher', function( e, data ){
+
+					console.log( data.$input[0].checked );
+
+
+				} );
+
+				$('.level :radio').switcher({
+					// dir:'ltr',
+					// reverse: true,
+					theme: 'iphone',
+					width: 70,
+					blobOffset: 0,
+
+
+				});
+
+
+				$('.permissions :checkbox').switcher({
+					// dir:'rtl',
+					// reverse: true,
+					// inputs: true,
+					width: 44,
+					height: 16,
+					blobOffset: 2,
+					onText: 'YES',
+					// offText: 'مطفى',
+					theme: 'dark',
+					// autoFontSize: true,
+
+				});
+
+				$('.delete :checkbox').switcher({
+					// dir:'rtl',
+					// reverse: true,
+					inputs: true,
+					// width: 70,
+					// height: 24,
+					// blobOffset: 2,
+					// onText: 'شغال',
+					// offText: 'مطفى',
+					theme: 'modern',
+					// autoFontSize: true,
+
+				});
+
+				$('.hoppies :checkbox').switcher(
+					{
+						theme: 'flat',
+						// blobOffset: 3,
+					});
+			};
+			
+
+		</script>
+
+
+
+	<body>
+		
+		<section class="container">
+			<div class="gender">
+					<h4>Select Gender</h4>
+					<label for="gender">Male </label>
+					<input type="radio" name="gender" value="male" ><br />
+					<label >Female </label>
+					<input type="radio" name="gender" value="female" ><br />
+					<label >Select </label>
+					<input type="radio" name="gender" value="select" checked >
+		
+				</div>
+				<div class="level">
+					<h4>Level</h4>
+		
+					<label >level 1 </label>
+					<input type="radio" name="level" value="level1" ><br />
+					<label >level2 </label>
+					<input type="radio" name="level" value="level2" checked >
+				</div>
+				<div class="permissions">
+					<h4>CheckBoxs</h4>
+				
+					<label >Access CP </label>
+					<input type="checkbox" name="access_cp" value="access_cp"><br />
+					<label >Manage Users </label>
+					<input type="checkbox" name="manage_users" value="manage_users" checked >
+				</div>
+		
+				<div class="delete">
+					<h4>CheckBoxs</h4>
+				
+					<label >user1 </label>
+					<input type="checkbox" name="users_id[]" value="1" checked /><br />
+					<label >user2 </label>
+					<input type="checkbox" name="users_id[]" value="2" />
+				</div>
+
+				<div class="hoppies">
+					<h4>Hoppies</h4>
+				
+					<label >singing </label>
+					<input type="checkbox" name="singing" value="1" checked /><br />
+					<label >drawing </label>
+					<input type="checkbox" name="drawing" value="1" disabled/>
+				</div>
+
+			</section>
+
+		
+	</body>
+
+</html>
