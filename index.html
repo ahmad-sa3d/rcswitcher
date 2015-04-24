@@ -35,7 +35,7 @@
 					// reverse: true,
 					theme: 'iphone',
 					width: 70,
-					blobOffset: 0,
+					blobOffset: 1,
 
 
 				});
@@ -74,6 +74,13 @@
 						theme: 'flat',
 						// blobOffset: 3,
 					});
+
+				$('.test :checkbox').switcher(
+					{
+						theme: 'material',
+						// blobOffset: 3,
+					});
+
 			};
 			
 
@@ -127,6 +134,15 @@
 					<input type="checkbox" name="singing" value="1" checked /><br />
 					<label >drawing </label>
 					<input type="checkbox" name="drawing" value="1" disabled/>
+				</div>
+
+				<div class="test">
+					<h4>Testing Material</h4>
+				
+					<label >singing </label>
+					<input type="checkbox" name="singing" value="1" checked /><br />
+					<label >drawing </label>
+					<input type="checkbox" name="drawing" value="1"/>
 				</div>
 
 			</section>

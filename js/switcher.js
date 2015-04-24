@@ -15,7 +15,7 @@
 		$blob: $( '<span>', {'class': 'sblob'} ),
 
 		// Allowed Themes
-		themes: [ 'light', 'modern', 'dark', 'iphone', 'flat' ],
+		themes: [ 'light', 'modern', 'dark', 'iphone', 'flat', 'material' ],
 
 	};
 
