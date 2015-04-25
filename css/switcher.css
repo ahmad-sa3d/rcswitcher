@@ -79,7 +79,6 @@
 .swraper.light
 {
 	border-radius: 99px;
-	box-shadow: 0 0 0px 1px #999;
 	border: 1px solid rgba( 50, 50, 50, .3 );
 }
 
@@ -183,9 +182,6 @@ background: linear-gradient(#e4e4e4, #f9f9f9);
 .swraper.dark
 {
 	border-radius: 5px;
-	/*-webkit-box-shadow: 0 0 0 1px #242529, 0 1px 0 1px #666;*/
-	        /*box-shadow: 0 0 0 1px #242529, 0 1px 0 1px #666;*/
-	        /*border: 1px solid #666;*/
 }
 
 .swraper.dark .stoggler
