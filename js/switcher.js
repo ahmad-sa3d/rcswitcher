@@ -9,7 +9,7 @@
 	var templates = {
 		
 		$switcher : $( '<span>', {'class': 'swraper'} ).hide(),
-		$toggler: $( '<spa>', {'class': 'stoggler' } ),
+		$toggler: $( '<span>', {'class': 'stoggler' } ),
 		$on: $( '<span>', {'class': 'slabel-on'} ),
 		$off: $( '<span>', {'class': 'slabel-off'} ),
 		$blob: $( '<span>', {'class': 'sblob'} ),
