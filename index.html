@@ -20,6 +20,7 @@
 				// width: 70,
 				blobOffset: 0,
 				// inputs: true,
+				autoStick: true,
 
 				})
 				// Listen to status changes
@@ -52,6 +53,7 @@
 					offText: 'NO',
 					theme: 'dark',
 					// autoFontSize: true,
+					autoStick: true,
 
 				});
 
@@ -82,38 +84,29 @@
 			<div class="gender">
 					<h4>Select Gender</h4>
 
-					<label for="gender">Male </label>
-					<input type="radio" name="gender" value="male" ><br />
-					<label >Female </label>
-					<input type="radio" name="gender" value="female" ><br />
-					<label >Select </label>
-					<input type="radio" name="gender" value="select" checked >
+					<label for="gender">Male </label><input type="radio" name="gender" value="male" ><br />
+					<label >Female </label><input type="radio" name="gender" value="female" ><br />
+					<label >Select </label><input type="radio" name="gender" value="select" checked >
 		
 				</div>
 				<div class="level">
 					<h4>Level</h4>
 		
-					<label >level 1 </label>
-					<input type="radio" name="level" value="level1" ><br />
-					<label >level2 </label>
-					<input type="radio" name="level" value="level2" checked >
+					<label >level 1 </label><input type="radio" name="level" value="level1" ><br />
+					<label >level2 </label><input type="radio" name="level" value="level2" checked >
 				</div>
 				<div class="permissions">
 					<h4>Permissions</h4>
 				
-					<label >Access CP </label>
-					<input type="checkbox" name="access_cp" value="access_cp"><br />
-					<label >Manage Users </label>
-					<input type="checkbox" name="manage_users" value="manage_users" checked >
+					<label >Access CP</label><input type="checkbox" name="access_cp" value="access_cp"><br />
+					<label >Manage Users </label><input type="checkbox" name="manage_users" value="manage_users" checked >
 				</div>
 		
 				<div class="delete">
 					<h4>Delete users</h4>
 				
-					<label >user1 </label>
-					<input type="checkbox" name="users_id[]" value="1" checked /><br />
-					<label >user2 </label>
-					<input type="checkbox" name="users_id[]" value="2" />
+					<label >user1 </label><input type="checkbox" name="users_id[]" value="1" checked /><br />
+					<label >user2 </label><input type="checkbox" name="users_id[]" value="2" />
 				</div>
 
 			</section>

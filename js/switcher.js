@@ -255,6 +255,38 @@
 			if( options.height < 20 || options.autoFontSize )	templates.$toggler.css( { 'font-size': [ options.height / 2, 'px' ].join('') } );
 
 			// console.log( 'calculated once' )
+			
+			// Auto Stick
+			templates.$switcher.css( 'margin', '' );
+
+			if( options.autoStick )
+			{
+				var $label = switcherP.$this.first().prev('label');
+				var parentAvailableWidth = switcherP.$this.first().parent().width();
+
+				parentAvailableWidth -= ( options.inputs ) ? switcherP.$this.first().outerWidth(true) : 0;
+
+				if( $label )
+				{
+					labelWidth = $label.outerWidth(true);
+
+					var needed = parentAvailableWidth - labelWidth;
+
+					console.log( 'needed value: ', needed )
+
+					var margin = needed - options.width;
+
+					console.log( 'margin value: ', margin )
+
+					// remove border width if exists
+					margin -= ( options.theme == 'dark' ) ? 0 : 2;
+
+
+					templates.$switcher.css( 'margin-left', margin );
+
+				}
+
+			}
 
 		},
 
@@ -482,6 +514,8 @@
 				autoFontSize: false,
 
 				theme: 'light',
+
+				autoStick: false,
 			},
 			options || {} );
 
