@@ -281,8 +281,13 @@
 					// remove border width if exists
 					margin -= ( options.theme == 'dark' ) ? 0 : 2;
 
+					// Left OR Right margin
+					if( options.dir == 'rtl' )
+						
+						templates.$switcher.css( 'margin-right', margin );
+					else
 
-					templates.$switcher.css( 'margin-left', margin );
+						templates.$switcher.css( 'margin-left', margin );
 
 				}
 
