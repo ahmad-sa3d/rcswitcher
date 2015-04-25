@@ -40,12 +40,28 @@
 	-o-transition: all .4s ease-out .1s;
 	-ms-transition: all .4s ease-out .1s;
 	transition: all .4s ease-out .1s;
+	
 }
 
 .stoggler, .stoggler span
 {
-	display: inline-block;
-	vertical-align: middle;
+	float: left;
+}
+
+.swraper[dir=rtl] .stoggler,
+.swraper[dir=rtl] .stoggler span
+{
+	float: right;
+}
+
+/* clear fix */
+.swraper:before, .swraper:after,
+.stoggler:before, .stoggler:after
+{
+	content: "";
+	display: table;
+	clear: both;
+	#zoom: 1;
 }
 
 .stoggler .sblob
@@ -64,7 +80,8 @@
 	transform: translate( -50%, -50%);
 }
 
-.stoggler .slabel-on, .stoggler .slabel-off
+.stoggler .slabel-on,
+.stoggler .slabel-off
 {
 	width: 50%;
 	text-align: center;
@@ -79,7 +96,7 @@
 .swraper.light
 {
 	border-radius: 99px;
-	border: 1px solid rgba( 50, 50, 50, .3 );
+	border: 1px solid rgba( 100, 100, 100, .3 );
 }
 
 .swraper.light .stoggler
@@ -108,7 +125,12 @@
 	border-radius: 99px;
 	background: -webkit-linear-gradient( #f5f5f5, #cfcfcf );
 	background: linear-gradient( #f5f5f5, #cfcfcf );
-	box-shadow: 1px 1px 2px #888;
+	box-shadow: 0 0 4px 1px #999;
+}
+
+.swraper.light .stoggler.on .sblob
+{
+	box-shadow: 0 0 10px -1px #005e00;
 }
 
 .swraper.light .stoggler .sblob:hover
@@ -118,7 +140,8 @@ background: -o-linear-gradient(#e4e4e4, #f9f9f9);
 background: linear-gradient(#e4e4e4, #f9f9f9);
 }
 
-.swraper.light .stoggler .slabel-on, .swraper.light .stoggler .slabel-off{}
+.swraper.light .stoggler .slabel-on,
+.swraper.light .stoggler .slabel-off{}
 
 /* ------------  END THEME LIGHT ------------ */
 
