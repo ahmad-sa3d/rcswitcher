@@ -87,8 +87,8 @@
 			
 			data.components.$toggler = templates.$toggler.clone();
 			
-			data.components.$on = templates.$on.clone().text( $input.attr('switcher-ontext') || options.onText );
-			data.components.$off = templates.$off.clone().text( $input.attr('switcher-offtext') || options.offText );
+			data.components.$on = templates.$on.clone().html( $input.attr('switcher-ontext') || options.onText );
+			data.components.$off = templates.$off.clone().html( $input.attr('switcher-offtext') || options.offText );
 			data.components.$blob = templates.$blob.clone();
 
 			
