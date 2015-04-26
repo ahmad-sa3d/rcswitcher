@@ -83,7 +83,7 @@
 
 			data.$switcher = templates.$switcher.clone().attr( { 'input-name': inputName, 'input-value': $input.attr( 'value' ), 'input-type': type } );
 
-			if( options.dir == "rtl" )	data.$switcher.attr( 'dir', 'rtl' );
+			if( switcherP.cssValues.dir == 'rtl' )	data.$switcher.addClass( 'rtl' );
 			
 			data.components.$toggler = templates.$toggler.clone();
 			
@@ -256,33 +256,35 @@
 
 			// console.log( 'calculated once' )
 			
+			
 			// Auto Stick
 			templates.$switcher.css( 'margin', '' );
 
 			if( options.autoStick )
 			{
-				var $label = switcherP.$this.first().prev('label');
-				var parentAvailableWidth = switcherP.$this.first().parent().width();
-
-				parentAvailableWidth -= ( options.inputs ) ? switcherP.$this.first().outerWidth(true) : 0;
+				var $fInput = switcherP.$this.first(),
+					$label = $fInput.prev('label'),
+					parentAW;
+					
 
 				if( $label )
 				{
-					labelWidth = $label.outerWidth(true);
+					parentAW = $fInput.parent().width();
 
-					var needed = parentAvailableWidth - labelWidth;
+					// subtract input width if visible
+					parentAW -= ( options.inputs ) ? $fInput.outerWidth( true ) : 0;
 
-					console.log( 'needed value: ', needed )
+					// subtract label width
+					parentAW -= $label.outerWidth( true );
 
-					var margin = needed - options.width;
-
-					console.log( 'margin value: ', margin )
+					// subtract switch width
+					var margin = parentAW - options.width;
 
 					// remove border width if exists
 					margin -= ( options.theme == 'dark' ) ? 0 : 2;
 
 					// Left OR Right margin
-					if( options.dir == 'rtl' )
+					if( switcherP.cssValues.dir == 'rtl' )
 						
 						templates.$switcher.css( 'margin-right', margin );
 					else
@@ -501,6 +503,11 @@
 		// Get Only Checkbox and Radio inputs only
 
 		switcherP.$this = this.filter( 'input[type=checkbox], input[type=radio]' );
+
+		switcherP.cssValues.dir = window.getComputedStyle( switcherP.$this[0], null ).direction || 'ltr';
+
+		// Detect Transform direction
+		switcherP.transformDir = ( switcherP.cssValues.dir == 'rtl' ) ? '' : '-';
 		
 
 		// Set Options
@@ -508,7 +515,6 @@
 			{
 				onText: 'ON',
 				offText: 'OFF',
-				dir: $( 'html,body' ).attr( 'dir' ) || 'ltr',
 				reverse: false,
 				inputs: false,
 
@@ -531,10 +537,7 @@
 
 		// Make Sure that Theme is Supported
 		if( templates.themes.indexOf( options.theme ) == -1 ) options.theme = 'light';
-
-		// Detect Transform direction
-		switcherP.transformDir = ( options.dir == 'rtl' ) ? '' : '-';
-
+		
 		
 		// Start
 		switcherM.start( switcherP, options );

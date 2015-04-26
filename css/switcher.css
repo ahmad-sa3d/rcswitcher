@@ -48,8 +48,8 @@
 	float: left;
 }
 
-.swraper[dir=rtl] .stoggler,
-.swraper[dir=rtl] .stoggler span
+.swraper.rtl .stoggler,
+.swraper.rtl .stoggler span
 {
 	float: right;
 }
