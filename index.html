@@ -81,34 +81,72 @@
 
 	<body>
 		
-		<section class="container">
+		<section class="container clear-fix">
 			
-			<div class="gender">
+			<div class="gender block">
 				<h4>Select Gender</h4>
 
 				<label for="gender">Male </label><input type="radio" name="gender" value="male" ><br />
 				<label >Female </label><input type="radio" name="gender" value="female" ><br />
 				<label >Select </label><input type="radio" name="gender" value="select" checked >
+
+				<div class="info">
+					<ul class="clear-fix">
+						<li>Theme<span>light</span></li>
+						<li>blobOffset<span>0</span></li>
+						<li>autoStick<span>true</span></li>
+					</ul>
+				</div>
 	
 			</div>
-			<div class="level">
+			<div class="level block">
 				<h4>Level</h4>
 	
 				<label >level 1 </label><input type="radio" name="level" value="level1" ><br />
-				<label >level2 </label><input type="radio" name="level" value="level2" checked >
+				<label >level 3 </label><input type="radio" name="level" value="level2" disabled >
+				<label >level 3 </label><input type="radio" name="level" value="level3" checked >
+
+				<div class="info">
+					<ul class="clear-fix">
+						<li>Theme<span>flat</span></li>
+						<li>blobOffset<span>1</span></li>
+					</ul>
+				</div>
 			</div>
-			<div class="permissions">
+			
+			<div class="permissions block">
 				<h4>Permissions</h4>
 			
 				<label >Access CP</label><input type="checkbox" name="access_cp" value="access_cp"><br />
 				<label >Manage Users </label><input type="checkbox" name="manage_users" value="manage_users" checked >
+
+				<div class="info">
+					<ul class="clear-fix">
+						<li>width<span>44</span></li>
+						<li>height<span>16</span></li>
+						<li>Theme<span>dark</span></li>
+						<li>blobOffset<span>2</span></li>
+						<li>autoStick<span>true</span></li>
+						<li>onText<span>YES</span></li>
+						<li>offText<span>NO</span></li>
+					</ul>
+				</div>
 			</div>
 	
-			<div class="delete">
+			<div class="delete block">
 				<h4>Delete users</h4>
 			
 				<label >user1 </label><input type="checkbox" name="users_id[]" value="1" checked /><br />
 				<label >user2 </label><input type="checkbox" name="users_id[]" value="2" />
+
+				<div class="info">
+					<ul class="clear-fix">
+						<li>Theme<span>modern</span></li>
+						<li>inputs<span>true</span></li>
+						<li>onText<span>Del</span></li>
+						<li>offText<span>NO</span></li>
+					</ul>
+				</div>
 			</div>
 
 		</section>
