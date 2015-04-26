@@ -8,6 +8,7 @@
  *
  *
  * @package 	rcSwitcher
+ * @name 		rcSwitcher
  * @version 	2.1.0
  * @author  	ahmed saad <a7mad.sa3d.2014@gmail.com><ahmedfadlshaker@gmail.com>
  * @copyright  	ahmed saad april 2015
@@ -105,8 +106,8 @@
 			
 			data.components.$toggler = templates.$toggler.clone();
 			
-			data.components.$on = templates.$on.clone().html( $input.attr('switcher-ontext') || options.onText );
-			data.components.$off = templates.$off.clone().html( $input.attr('switcher-offtext') || options.offText );
+			data.components.$on = templates.$on.clone().html( $input.attr('rcswitcher-ontext') || options.onText );
+			data.components.$off = templates.$off.clone().html( $input.attr('rcswitcher-offtext') || options.offText );
 			data.components.$blob = templates.$blob.clone();
 
 			
