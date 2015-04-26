@@ -1,3 +1,21 @@
+/**
+ * JQuery rcSwitcher plugin
+ *
+ * rcSwitcher plugin referes to 'Radio Checkbox Switcher'
+ * it let you transform radio and checkbox inputs into a nice switch button
+ * without requirement of a specific html syntax, it simply takes your existed basic input 
+ * and do the magic with many customizations and supports 4 themes
+ *
+ *
+ * @package 	rcSwitcher
+ * @version 	2.1.0
+ * @author  	ahmed saad <a7mad.sa3d.2014@gmail.com><ahmedfadlshaker@gmail.com>
+ * @copyright  	ahmed saad april 2015
+ * @link 		http://plus.google.com/+AhmedSaadGmail
+ * @license 	http://choosealicense.com/licenses/gpl-3.0/ 	GNU GPL V3.0
+ * 
+ */
+
 (function($){
 
 
@@ -474,7 +492,7 @@
 	 * @param  {Object} options switcher options
 	 * @return {jQ Obj}         this
 	 */
-	$.fn.switcher = function( options ){
+	$.fn.rcSwitcher = function( options ){
 
 
 		// Defining Properties

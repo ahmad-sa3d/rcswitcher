@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Switcher</title>
+	<title>rcSwitcher</title>
 	<meta charset="utf-8" />
 	<link type="text/css" rel="stylesheet" href="css/style.css">
-	<link type="text/css" rel="stylesheet" href="css/switcher.css">
+	<link type="text/css" rel="stylesheet" href="css/rcswitcher.css">
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="js/switcher.js"></script>
+	<script type="text/javascript" src="js/rcswitcher.js"></script>
 </head>
 
 <script>
@@ -14,7 +14,7 @@
 
 			window.onload = function(){
 
-				$('.gender :radio').switcher({
+				$('.gender :radio').rcSwitcher({
 
 				// reverse: true,
 				theme: 'light',
@@ -25,14 +25,14 @@
 
 				})
 				// Listen to status changes
-				.on( 'turnon.switcher', function( e, data ){
+				.on( 'turnon.rcSwitcher', function( e, data ){
 
 					console.log( data.$input[0].checked );
 
 
 				} );
 
-				$('.level :radio').switcher({
+				$('.level :radio').rcSwitcher({
 
 					// reverse: true,
 					theme: 'flat',
@@ -43,7 +43,7 @@
 				});
 
 
-				$('.permissions :checkbox').switcher({
+				$('.permissions :checkbox').rcSwitcher({
 
 					// reverse: true,
 					// inputs: true,
@@ -58,7 +58,7 @@
 
 				});
 
-				$('.delete :checkbox').switcher({
+				$('.delete :checkbox').rcSwitcher({
 
 					// reverse: true,
 					inputs: true,
