@@ -397,8 +397,8 @@
 			data.$input.prop( 'checked', false );
 
 			// Fire Event and pass data object to event handler
-			data.$input.trigger( 'turnoff.switcher', data );
-			data.$input.trigger( 'change.switcher', data );
+			data.$input.trigger( 'turnoff.rcSwitcher', data );
+			data.$input.trigger( 'change.rcSwitcher', data );
 
 
 
@@ -427,8 +427,8 @@
 			data.$input.prop( 'checked', true );
 
 			// Fire Event and pass data object to event handler
-			data.$input.trigger( 'turnon.switcher', data );
-			data.$input.trigger( 'change.switcher', data );
+			data.$input.trigger( 'turnon.rcSwitcher', data );
+			data.$input.trigger( 'change.rcSwitcher', data );
 
 
 		},
