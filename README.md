@@ -4,6 +4,8 @@
 
 
 >rcSwitcher plugin *'Radio Checbox Switcher'* let you transform your input checkboxs and radios into a nice switch buttons with a nice interfaces.
+>
+>see __[_Demo_](http://ahmad-sa3d.github.io/rcswitcher/)__ here
 	
 
 ### Requirements
