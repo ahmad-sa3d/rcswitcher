@@ -32,11 +32,12 @@
 ### Features:
 
 
-1. no need for extra or specific html
-2. _`smooth`_ as uses css3 transform and transition properties with full vendor prefixs
-3. support checkbox of type array _ex: `<input name="delete_users[]">`_
-4. multiple themes
-5. you can manipulate switch style as:
+1. no need for extra or specific html.
+2. _`smooth`_ as uses css3 transform and transition properties with full vendor prefixs.
+3. support `rtl`.
+4. support checkbox of type array _ex: `<input name="delete_users[]">`_.
+5. multiple themes
+6. you can manipulate switch style as:
    * control switch width and height.
    * control switch blob offset.
    * control switch on off direction.
