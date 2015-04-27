@@ -110,7 +110,7 @@ $(':radio').rcSwitcher().on({
 
 __Options that could be set inside html input as attributes__
 
->_`data-ontext=""`_	
+>_`data-ontext=""`_		
 >_`data-offtext=""`_	
 >>those attributes are equivalent to onText, offText options	
 >>__*but they have more priority and if set they will override options values*__
