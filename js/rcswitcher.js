@@ -106,8 +106,8 @@
 			
 			data.components.$toggler = templates.$toggler.clone();
 			
-			data.components.$on = templates.$on.clone().html( $input.attr('rcswitcher-ontext') || options.onText );
-			data.components.$off = templates.$off.clone().html( $input.attr('rcswitcher-offtext') || options.offText );
+			data.components.$on = templates.$on.clone().html( $input.attr('data-ontext') || options.onText );
+			data.components.$off = templates.$off.clone().html( $input.attr('data-offtext') || options.offText );
 			data.components.$blob = templates.$blob.clone();
 
 			
@@ -399,7 +399,7 @@
 
 			// Fire Event and pass data object to event handler
 			data.$input.trigger( 'turnoff.rcSwitcher', data );
-			data.$input.trigger( 'change.rcSwitcher', data );
+			data.$input.trigger( 'change.rcSwitcher', data, 'turnoff' );
 
 
 
@@ -429,7 +429,7 @@
 
 			// Fire Event and pass data object to event handler
 			data.$input.trigger( 'turnon.rcSwitcher', data );
-			data.$input.trigger( 'change.rcSwitcher', data );
+			data.$input.trigger( 'change.rcSwitcher', data, 'turnon' );
 
 
 		},

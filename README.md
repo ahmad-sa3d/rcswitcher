@@ -43,7 +43,7 @@
    * ability to automatic stick switch to its parent side.
    * show switch corresponding input for functionality testing.
    * fire custom events on turnon, turnoff and change. so you can perform your tasks depends on switch status.
-   		* >on firing events an information plain object is passed to event handler function as the second argument. it contains jquery objects of each switch piece and also input jquery object 
+   		* on firing events an information plain object is passed to event handler function as the second argument. it contains jquery objects of each switch piece and also input jquery object 
    
     
 ---
@@ -110,13 +110,13 @@ $(':radio').rcSwitcher().on({
 
 __Options that could be set inside html input as attributes__
 
->_`rcswitcher-ontext=""`_	
->_`rcswitcher-offtext=""`_	
+>_`data-ontext=""`_	
+>_`data-offtext=""`_	
 >>those attributes are equivalent to onText, offText options	
 >>__*but they have more priority and if set they will override options values*__
 
 ```html
 <!-- Set OnText and offText inside input element itself -->
-<input type="checkbox" name="" value="" rcswitcher-ontext="YES" rcswitcher-offtext="NO" />
+<input type="checkbox" name="" value="" data-ontext="YES" data-offtext="NO" />
 
 ```
