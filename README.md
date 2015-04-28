@@ -3,7 +3,7 @@
 ![rcSwitcher](http://i707.photobucket.com/albums/ww71/ashekfadl/Screen%20Shot%202015-04-26%20at%208.30.33%20PM.png)
 
 
->rcSwitcher plugin *'Radio Checbox Switcher'* let you transform your input checkboxs and radios into a nice switch buttons with a nice interfaces.
+>rcSwitcher plugin *'Radio Checkbox Switcher'* let you transform your input checkboxs and radios into a nice switch buttons with a nice interfaces.
 >
 >see __[_Demo_](http://ahmad-sa3d.github.io/rcswitcher/)__ here
 	
@@ -11,7 +11,7 @@
 ### Requirements
 >browser supports css3 transition and transform, latest versions of *__modern browsers support css3 transform and transitions__*
 
->built with jquery 2.3.1
+>built with jquery 2.1.3
 >>*__requires  jquery >= 1.7.0__*
 
 
