@@ -24,7 +24,10 @@
 >@author	Ahmed Saad <a7mad.sa3d.2014@gmail.com>
 
 ### Version
-> 2.1.0
+> 3.0.0
+
+### Updated
+> 4 Jul 2016
 
 
 ----
@@ -45,9 +48,41 @@
    * ability to automatic fit font size.
    * ability to automatic stick switch to its parent side.
    * show switch corresponding input for functionality testing.
-   * fire custom events on turnon, turnoff and change. so you can perform your tasks depends on switch status.
-   		* on firing events an information plain object is passed to event handler function as the second argument. it contains jquery objects of each switch piece and also input jquery object 
-   
+7. ####_fire custom events :_
+
+	> __*`turnon.rcSwitcher`*__
+	on turning on a Switch
+	
+	> __*`turnoff.rcSwitcher`*__
+	on turning off a Switch
+	
+	> __*`toggle.rcSwitcher`*__
+	on turning on / off a Switch
+	
+	>> *on firing events an information plain object is passed to event handler function as the second argument. it contains jquery objects of each switch piece and also input jquery object, also on toggle event a third argument will passed its value will be current toggled value as 'turnon' OR 'turnoff'*
+
+----
+### Changelog:
+
+
+1. add support for control swotch by changing input status
+	
+		$input = $('input[type=checkbox]').first().rcSwitcher();
+		
+		// swithcer will turn on
+		$input.prop( 'checked', 'true' ).change(); 
+		
+		// switcher will turn off 
+		$input.prop( 'checked', 'false' ).change();
+		
+		
+	> __Notice :__
+	
+	> *changing checkbox or radio checked status with javascript will not trigger --*change*-- event, so you must use _`change()`_ method*
+		
+2. change `change.rcSwitcher` Event to `toggle.rcSwitcher` to avoid built-in javascript `change` event
+3. enhance __*Demo*__ example to adapt with screen sizes and mobile phones
+4. some other tweaks.
     
 ---
 ### Usage:
@@ -101,7 +136,7 @@ $(':radio').rcSwitcher().on({
 		// to do on turning off a switch
 	},
 
-	'change.rcSwitcher': function( e, dataObj, changeType ){
+	'toggle.rcSwitcher': function( e, dataObj, changeType ){
 
 		// to do on turning on or off a switch
         // changeType is 'turnon' || 'turnoff'

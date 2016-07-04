@@ -2,15 +2,14 @@
 <html>
 <head>
 	<title>rcSwitcher</title>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link type="text/css" rel="stylesheet" href="css/style.min.css">
 	<link type="text/css" rel="stylesheet" href="css/rcswitcher.min.css">
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="js/rcswitcher.min.js"></script>
-</head>
+	<script type="text/javascript" src="js/rcswitcher-3.0.0.min.js"></script>
 
-<script>
-
+	<script>
 
 			window.onload = function(){
 
@@ -20,14 +19,14 @@
 				theme: 'light',
 				// width: 70,
 				blobOffset: 0,
-				// inputs: true,
+				inputs: true,
 				autoStick: true,
 
 				})
 				// Listen to status changes
 				.on( 'turnon.rcSwitcher', function( e, data ){
 
-					console.log( data.$input[0].checked );
+					// console.log( data.$input[0].checked );
 
 
 				} );
@@ -56,7 +55,12 @@
 					// autoFontSize: true,
 					autoStick: true,
 
-				});
+				}).on( 'toggle.rcSwitcher', function( e, data, type ){
+
+					console.log( type );
+
+
+				} );
 
 				$('.delete :checkbox').rcSwitcher({
 
@@ -72,19 +76,46 @@
 
 				});
 
+
+				
+				$('.toggle-radio').on( 'click', function(e){
+
+					if( $('input[value=male]').is(':checked' ) )
+						$('input[value=male]').prop( 'checked', false )
+					else
+						$('input[value=male]').prop( 'checked', true )
+
+
+					$('input[value=male]').change();
+					
+					// console.log( $('input[value=male]')[0].checked );
+
+				} );
+
+				$('.toggle-checkbox').on( 'click', function(e){
+
+					if( $('input[value=access_cp]').is(':checked' ) )
+						$('input[value=access_cp]').prop( 'checked', false )
+					else
+						$('input[value=access_cp]').prop( 'checked', true )
+
+
+					$('input[value=access_cp]').change();
+					
+					// console.log( $('input[value=access_cp]')[0].checked );
+
+				} );
+
 			};
-			
 
 		</script>
-
-
-
-	<body>
-		
-		<section class="container clear-fix">
-			
+	</head>
+	<body>			
+		<section class="container clear-fix">			
 			<div class="gender block">
 				<h4>Select Gender</h4>
+
+				<button class="toggle-radio" type="button">select male</button>
 
 				<label for="gender">Male </label><input type="radio" name="gender" value="male" ><br />
 				<label >Female </label><input type="radio" name="gender" value="female" ><br />
@@ -116,6 +147,8 @@
 			
 			<div class="permissions block">
 				<h4>Permissions</h4>
+
+				<button class="toggle-checkbox" type="button">toggle access_cp</button>
 			
 				<label >Access CP</label><input type="checkbox" name="access_cp" value="access_cp"><br />
 				<label >Manage Users </label><input type="checkbox" name="manage_users" value="manage_users" checked >
@@ -151,6 +184,27 @@
 
 		</section>
 
+		<footer id="footer">
+			<div>
+				Developed By Ahmed Saad &copy; 2015-2016<br />
+				<small>a7mad.sa3d.2014@gmail.com</small><br />
+				<cite title="telephone">tel: +2  01011772100</cite>		
+			</div>
+		</footer>
+
+		<!-- Foot Scripts -->
+		<script type="text/javascript">
+			
+			// sticky Footer
+			var footer = document.getElementById( 'footer' );
+
+			var footerHeight = footer.scrollHeight,
+				body = document.getElementsByTagName('body')[0];
+
+			body.style.marginBottom = footerHeight + 'px';
+
+		
+		</script>
 		
 	</body>
 
