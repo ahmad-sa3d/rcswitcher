@@ -9,7 +9,7 @@
  *
  * @package 	rcSwitcher
  * @name 		rcSwitcher
- * @version 	3.0.0	< 4 Jul 2016 >	
+ * @version 	4.0	< 29 Sep 2016 >	
  * @author  	ahmed saad <a7mad.sa3d.2014@gmail.com><ahmedfadlshaker@gmail.com>
  * @copyright  	ahmed saad april 2015
  * @link 		http://plus.google.com/+AhmedSaadGmail
@@ -55,21 +55,16 @@
 		 * @param  {Object} options   switcher plugin options object
 		 * @return void
 		 */
-		start: function( switcherP, options ){
-			
-			
+		start: function( switcherP, options )
+		{			
 			// Set Templates and one runtime calculations
 			this.setTemplateStyle( options, switcherP );
 			
-			
 			// prepare and create switches
-			switcherP.$this.each( function( i, input ){
-
+			switcherP.$this.each( function( i, input )
+			{
 				// console.log( $input.type );
-				
 				this.makeSwitcher( $( input ), switcherP, options );
-
-
 			}.bind( this ) );
 
 			// ADD EVENT BEHAVIOUR
@@ -85,14 +80,12 @@
 		 * @param  {Object} options   switcher plugin options
 		 * @return void         
 		 */
-		makeSwitcher: function( $input, switcherP, options ){
-
+		makeSwitcher: function( $input, switcherP, options )
+		{
 			// console.log( $input.attr('name') )
-			
-
 			var inputName = $input.attr( 'name' ).replace( /(\[\])+$/, '' ), // remove input name array signs
 
-				inputValue = $input.attr('value'),
+				inputValue = $input.attr('value') || '',
 
 				type = $input.attr('type'),
 
@@ -100,7 +93,7 @@
 
 				data = { components: {}, '$input': $input };
 
-			data.$switcher = templates.$switcher.clone().attr( { 'input-name': inputName, 'input-value': $input.attr( 'value' ), 'input-type': type } );
+			data.$switcher = templates.$switcher.clone().attr( { 'input-name': inputName, 'input-value': inputValue, 'input-type': type } );
 
 			if( switcherP.cssValues.dir == 'rtl' )	data.$switcher.addClass( 'rtl' );
 			
@@ -113,7 +106,6 @@
 			
 			// Build switch according to direction order
 			if( options.reverse )
-			
 				data.components.$toggler.append( data.components.$off, data.components.$blob, data.components.$on )
 				.appendTo( data.$switcher );
 				
@@ -122,24 +114,36 @@
 				.appendTo( data.$switcher );
 				
 			
-
 			// Insert to DOM
 			$input.before( data.$switcher );						
 
 			// Set On Off Style
 			if( $input[ 0 ].checked )
-			
+			{
+				data.switcherChecked = true;
 												//|-> outside change
 												//|	  //|-> style only
 												//|   //|
 				this.turnOn( data, switcherP, false, true );
+			}
 			else
-			
+			{
+				data.switcherChecked = false;
 				this.turnOff( data, switcherP, false, true );
-
+			}
 
 			// Set Disabled Style
-			if( $input.prop( 'disabled' ) )  data.$switcher.addClass( 'disabled' ).attr( 'title', 'switch is disabled!' );
+			inputDisabled = $input[ 0 ].disabled;
+			
+			if( inputDisabled )
+			{
+				data.switcherDisabled = true;
+				data.$switcher.addClass( 'disabled' ).attr( 'title', 'switch is disabled!' );
+			}
+			else
+			{
+				data.switcherDisabled = false;
+			}
 			
 
 			// Use family to be aliase for current radio name family
@@ -148,13 +152,11 @@
 			// Check if family already exists
 			if( family = cat.group[ inputName ] )
 			{
-				
 				family.group[ inputValue ] = data;
 
 				// update length.
 				// represents how many input for the same radio name
 				family.length++;
-
 			}
 			else
 			{
@@ -175,29 +177,22 @@
 				}
 
 			}
-
-
+			
 			// Specifiuc radio properties
 			if( type == 'radio' )
 			{
 				// Status
-				if( $input[ 0 ].disabled )
-
+				if( inputDisabled )
 					family.disabled++;
 				else
-
 					family.enabled++;
-
 
 				// set current checked radio input
 				if( $input[ 0 ].checked )
-
 					family.checkedKey = inputValue;
-
 
 				// Set switchable property
 				family.switchable = ( family.enabled >= 2 ) ? true : false;
-
 			}
 			
 			// Add to switchers collections
@@ -211,20 +206,15 @@
 
 			
 			// attach Outside Change Event
-			$input.on( 'change', function(e){
-					
-				// console.log( e );
-
-				this.toggle({
+			$input.on( 'change', function(e)
+			{
+				this.trackChanges({
 					type: type,
 					name: inputName,
 					value: inputValue,
-				}, switcherP, true );
-				
+				}, switcherP );
 
 			}.bind(this));
-
-
 
 		},
 
@@ -358,17 +348,13 @@
 				if( !data.$input[ 0 ].disabled )
 				{
 					// console.log( 'clicked checkbox' )
-
 					if( outsideChange )
 						status = data.$input[ 0 ].checked  ? 'turnOn' : 'turnOff';
 					else
 						status = data.$input[ 0 ].checked  ? 'turnOff' : 'turnOn';
 
-
 					this[ status ]( data, switcherP, outsideChange );	
-					
 				}
-
 			}
 			else
 			{
@@ -376,8 +362,11 @@
 				family = switcherP.radios.group[ info.name ];
 
 				// console.log( family );
+				data = family.group[ info.value ] ;
 
-				data = family.group[ info.value] ;
+				if( outsideChange && data.$input[0].checked == data.switcherChecked )
+					return;
+				// console.log( data );
 
 				// if Outside request is to turnoff ( uncheck ), then don't do any thing and recheck radio
 				if( outsideChange && !data.$input[ 0 ].checked )
@@ -392,23 +381,105 @@
 
 				if( !data.$input[ 0 ].disabled && family.switchable )
 				{
-
 					// change only if it is not currently selected
 					if( family.checkedKey != info.name )
 					{
 						// turnon			
-					
 						this.turnOff( family.group[ family.checkedKey ], switcherP, outsideChange );
 
 						this.turnOn( data, switcherP, outsideChange );
 
 						family.checkedKey = info.value;
+					}
+				}
+			}
 
+		},
+
+		/**
+		 * Track Input Changes
+		 *
+		 * This Method Will Check And Apply Any Changes Happens To Original Input
+		 * Those Changes Are Checked And Disabled Status
+		 *
+		 * This Method Also Handles Disabled Changes Mechanism
+		 *
+		 * Fires : enable.rcSwitcher AND disable.rcSwitcher according To Change Status
+		 * 
+		 * @param  {Object Literal} info      Input Name, Value, Type
+		 * @param  {Switcher Properties Object} switcherP All Switchers Properties Object
+		 * @return {undefined}           Doesnot Return Any Thing
+		 */
+		trackChanges: function( info, switcherP )
+		{
+			// On Input Change Event
+			var family, data;
+			
+			if( info.type == 'checkbox' )
+				family = switcherP.checkboxs.group[ info.name ];
+			else
+				family = switcherP.radios.group[ info.name ];
+
+			data = family.group[ info.value ];
+
+			// Track Checked Status Changes
+			if( data.$input[0].checked != data.switcherChecked )
+			{
+				if( data.switcherDisabled )
+				{
+					// Revert Changes
+					data.$input.prop( 'checked', data.switcherChecked );
+					
+					if( info.type == 'radio' )
+						family.group[ family.checkedKey ].$input.prop( 'checked', true );
+				}
+				else
+					this.toggle( info, switcherP, true );
+			}
+
+			// Track Disabled Status Changes	
+			if( data.$input[0].disabled != data.switcherDisabled )
+			{
+				if( data.$input[0].disabled )
+				{
+					if( !data.$switcher.hasClass( 'disabled' ) )
+						data.$switcher.addClass( 'disabled' );
+
+					if( info.type == 'radio'  )
+					{
+						family.disabled++;
+						family.enabled--;
+						// If Checked, Disable All Group
+						if( data.$input[0].checked == true )
+							family.switchable = false;
+
+						// console.log( family );
 					}
 
+					data.switcherDisabled = true;
 
+					// Fire Event and pass data object to event handler
+					data.$input.trigger( 'disable.rcSwitcher', data );
 				}
+				else
+				{
+					data.$switcher.removeClass( 'disabled' );
+					
+					data.$input.trigger( 'enable.rcSwitcher', data );
 
+					if( info.type == 'radio'  )
+					{
+						--family.disabled;
+						++family.enabled;
+						// If Checked, Disable All Group
+						if( family.enabled - family.disabled >= 2 )
+							family.switchable = true;
+
+						// console.log( family );
+					}
+
+					data.switcherDisabled = false;
+				}
 			}
 
 		},
@@ -429,13 +500,15 @@
 			// console.log( 'calculated on eventOFF' )
 			data.components.$toggler.css( switcherP.transformOff ).removeClass( 'on' ).addClass('off');
 
+			data.switcherChecked = false;
+
 			if( styleOnly ) return;
 			
 			// Set Input To Off
 			if( !outsideChange )
 				data.$input.prop( 'checked', false );
 
-			// // Fire Event and pass data object to event handler
+			// Fire Event and pass data object to event handler
 			data.$input.trigger( 'turnoff.rcSwitcher', data );
 			data.$input.trigger( 'toggle.rcSwitcher', [ data, 'turnoff' ] );
 
@@ -458,13 +531,13 @@
 			
 			data.components.$toggler.css( switcherP.transformOn ).addClass( 'on' ).removeClass('off');
 			
+			data.switcherChecked = true;
 
 			if( styleOnly ) return;
 			
 			// Set To ON and trigger original change event
 			// auto set checked property doesnot fire toggle event, so we need to trigger event manually
 			if( !outsideChange )
-				
 				data.$input.prop( 'checked', true );
 
 			data.$input.trigger( 'turnon.rcSwitcher', data );
@@ -483,22 +556,15 @@
 		behaviour: function( switcherP ){
 		// behaviour: function( switcherP, $switcher ){
 
-
 			// Disable click for input
-
-			// console.log( 'behaviour' );
-			
-			switcherP.$this.on( 'click', function( e ){
-
+			switcherP.$this.on( 'click', function( e )
+			{
 				e.preventDefault();
 				e.stopPropagation();				
-
 			}.bind( this ) );
 
 
-
 			// On Click on switchers
-			
 			switcherP.$switchers.on( 'click', function( e ){
 			// $switcher.on( 'click', function( e ){
 
@@ -518,14 +584,10 @@
 
 				e.preventDefault();
 				e.stopPropagation();
-				
 
 			}.bind( this ) );
-			
-
 
 		},
-
 
 	};
 
@@ -567,6 +629,10 @@
 		// Get Only Checkbox and Radio inputs only
 
 		switcherP.$this = this.filter( 'input[type=checkbox], input[type=radio]' );
+
+		// Stop if we havenot any checkboxs or radios
+		if( switcherP.$this.length == 0 )
+			return;
 
 		switcherP.cssValues.dir = window.getComputedStyle( switcherP.$this[0], null ).direction || 'ltr';
 

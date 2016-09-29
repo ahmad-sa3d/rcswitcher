@@ -24,10 +24,10 @@
 >@author	Ahmed Saad <a7mad.sa3d.2014@gmail.com>
 
 ### Version
-> 3.0.0
+> 4.0
 
 ### Updated
-> 4 Jul 2016
+> 29 Sep 2016
 
 
 ----
@@ -59,13 +59,26 @@
 	> __*`toggle.rcSwitcher`*__
 	on turning on / off a Switch
 	
+	>**New For V4 :**
+	
+	> __*`enable.rcSwitcher`*__
+	on enable a Switch
+	
+	> __*`disable.rcSwitcher`*__
+	on disable a Switch
+	
 	>> *on firing events an information plain object is passed to event handler function as the second argument. it contains jquery objects of each switch piece and also input jquery object, also on toggle event a third argument will passed its value will be current toggled value as 'turnon' OR 'turnoff'*
+	
+8. Respond For Input Status Changes ( `disabled`, `checked` ) 
+> To Respond after changing input you must trigger change By call `change` method on changed input.
+> 
+>> $input.prop( 'checked', 'false' ).change();
 
 ----
 ### Changelog:
 
 
-1. add support for control swotch by changing input status
+1. add support for control switch by changing input _`check`_ status
 	
 		$input = $('input[type=checkbox]').first().rcSwitcher();
 		
@@ -83,11 +96,32 @@
 2. change `change.rcSwitcher` Event to `toggle.rcSwitcher` to avoid built-in javascript `change` event
 3. enhance __*Demo*__ example to adapt with screen sizes and mobile phones
 4. some other tweaks.
+	####*Version 4 Changes :*
+5. Add Support For Track Disable And Enable Status on changing _`disable`_ status on Input'
+	
+		$input = $('input[type=checkbox]').first().rcSwitcher();
+		
+		// swithcer will be disabled
+		$input.prop( 'disabled', 'true' ).change(); 
+		
+		// switcher will be Enabled 
+		$input.prop( 'disabled', 'false' ).change();
+		
+		
+	> __Notice :__
+	
+	> **changing checkbox or radio checked status with javascript will not trigger *`change`* event, so you must use _`change()`_ method**
+	
+	>**Disabling Radio Button Will Have A Special Treatment as
+	> If radio button disabled while it was checked then every sibiling radio buttons *`have the same name`* Will Be Paused  and *`canot be checked`* as this should be The Right Behaviour.**
     
+6. Fix Compitability with Bootstrap Framework
+
 ---
 ### Usage:
 
 This example explains:
+
  * Basic usage
  * Available options with its defaults
  * Using Custom Event
@@ -140,7 +174,21 @@ $(':radio').rcSwitcher().on({
 
 		// to do on turning on or off a switch
         // changeType is 'turnon' || 'turnoff'
-	}
+	},
+	
+	'enable.rcSwitcher': function( e, dataObj ){
+
+		// to do on enabling a switch
+
+	},
+	
+	'disable.rcSwitcher': function( e, dataObj ){
+
+		// to do on disabling a switch
+
+	},
+	
+	
 
 });
 
