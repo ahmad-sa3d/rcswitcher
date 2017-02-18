@@ -24,11 +24,10 @@
 >@author	Ahmed Saad <a7mad.sa3d.2014@gmail.com>
 
 ### Version
-> 4.0
+> 4.1
 
 ### Updated
-> 29 Sep 2016
-
+> 18 Feb 2017
 
 ----
 
@@ -77,6 +76,25 @@
 ----
 ### Changelog:
 
+> __V 4.1__
+
+1. Add feature that input should only have on switcher
+		
+		$(':checkbox').rcSwitcher(); // create switcher
+		$(':checkbox').rcSwitcher(); // will not create switcher as it has already creatred
+		
+		
+2. Add rcSwitcher Object on input as property
+		
+		// We now can access rcSwitcher Object from element itself
+		$('#input').rcSwitcher(); // Create Switcher
+		
+		$('#input').[0].rcSwitcher; // Access its rcSwitcher Object
+		
+3. Add attribute 'data-has-rcswitcher="1"' on input to mark that input has rcswitcher
+4. Enhance Auto Stick
+
+> __V 4.0.1__
 
 1. add support for control switch by changing input _`check`_ status
 	
@@ -96,7 +114,9 @@
 2. change `change.rcSwitcher` Event to `toggle.rcSwitcher` to avoid built-in javascript `change` event
 3. enhance __*Demo*__ example to adapt with screen sizes and mobile phones
 4. some other tweaks.
-	####*Version 4 Changes :*
+
+> __V 4.0__
+
 5. Add Support For Track Disable And Enable Status on changing _`disable`_ status on Input'
 	
 		$input = $('input[type=checkbox]').first().rcSwitcher();

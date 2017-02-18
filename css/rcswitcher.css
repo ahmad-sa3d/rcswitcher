@@ -292,3 +292,38 @@ background: linear-gradient(#e4e4e4, #f9f9f9);
 .swraper.flat .stoggler .slabel-on:before, .swraper.flat .stoggler .slabel-off:before{}
 
 /* ------------  END THEME Flat ------------ */
+
+/* ------------  THEME Yellowish-green ------------ */
+.swraper.yellowish-green
+{
+	border-radius: 99px;
+	border: 2px solid #58d30b;
+}
+
+.swraper.yellowish-green .stoggler
+{
+	color: rgba( 0, 0, 0, 0.6 );
+}
+
+.swraper.yellowish-green .stoggler.on
+{
+}
+
+.swraper.yellowish-green .stoggler .sblob
+{
+	border-radius: 99px;
+	background: #ff8700;
+	transition: background linear .5s;
+}
+
+.swraper.yellowish-green .stoggler.on .sblob
+{
+	background: #58d30b;
+}
+
+.swraper.yellowish-green .stoggler .sblob:hover
+{
+	background: #0bcfd3;
+}
+
+/* ------------  END THEME yellowish-green ------------ */
