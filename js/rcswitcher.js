@@ -9,7 +9,11 @@
  *
  * @package 	rcSwitcher
  * @name 		rcSwitcher
- * @version 	4.0	< 29 Sep 2016 >	
+ * @version 	4.1	< 18 Feb 2017 >	
+ * @changes 	4.1 - Add feature that input shold only have on switcher
+ * 					- Add rcSwitcher Object on input as property
+ * 					- Add attribute 'data-has-rcswitcher="1"' on input to mark that input has rcswitcher
+ * 					- Enhance Auto Stick
  * @author  	ahmed saad <a7mad.sa3d.2014@gmail.com><ahmedfadlshaker@gmail.com>
  * @copyright  	ahmed saad april 2015
  * @link 		http://plus.google.com/+AhmedSaadGmail
@@ -34,7 +38,7 @@
 		$blob: $( '<span>', {'class': 'sblob'} ),
 
 		// Allowed Themes
-		themes: [ 'light', 'modern', 'dark', 'flat' ],
+		themes: [ 'light', 'modern', 'dark', 'flat', 'yellowish-green' ],
 
 	};
 
@@ -64,6 +68,12 @@
 			switcherP.$this.each( function( i, input )
 			{
 				// console.log( $input.type );
+				if( input.hasOwnProperty( 'rcSwitcher' ) )
+				{
+					console.warn( 'already has instance' );
+					return;
+				}
+
 				this.makeSwitcher( $( input ), switcherP, options );
 			}.bind( this ) );
 
@@ -198,6 +208,12 @@
 			// Add to switchers collections
 			switcherP.$switchers = switcherP.$switchers.add( data.$switcher );
 
+			// Store In Element Input JS
+			$input[0].rcSwitcher = data;
+
+			// Add attribute to mark this input that it has rcswitcher
+			$input.attr( 'data-has-rcswitcher', 1 );
+
 			// Update input type length
 			cat.length++;
 
@@ -308,7 +324,17 @@
 					var margin = parentAW - options.width;
 
 					// remove border width if exists
-					margin -= ( options.theme == 'dark' ) ? 0 : 2;
+					switch( options.theme )
+					{
+						case 'dark':
+							margin -= 2;
+							break;
+
+						case 'yellowish-green':
+							margin -= 4;
+							break;
+					}
+					
 
 					// Left OR Right margin
 					if( switcherP.cssValues.dir == 'rtl' )
@@ -471,7 +497,6 @@
 					{
 						--family.disabled;
 						++family.enabled;
-						// If Checked, Disable All Group
 						if( family.enabled - family.disabled >= 2 )
 							family.switchable = true;
 
@@ -509,9 +534,11 @@
 				data.$input.prop( 'checked', false );
 
 			// Fire Event and pass data object to event handler
-			data.$input.trigger( 'turnoff.rcSwitcher', data );
-			data.$input.trigger( 'toggle.rcSwitcher', [ data, 'turnoff' ] );
-
+			// Wait Transition 500ms Time 
+			setTimeout( function(){
+				data.$input.trigger( 'turnoff.rcSwitcher', data );
+				data.$input.trigger( 'toggle.rcSwitcher', [ data, 'turnoff' ] );
+			}, 500 );
 		},
 
 
@@ -540,8 +567,12 @@
 			if( !outsideChange )
 				data.$input.prop( 'checked', true );
 
-			data.$input.trigger( 'turnon.rcSwitcher', data );
-			data.$input.trigger( 'toggle.rcSwitcher', [ data, 'turnon' ] );
+			// Wait Transition 500ms Time 
+			setTimeout( function(){
+				data.$input.trigger( 'turnon.rcSwitcher', data );
+				data.$input.trigger( 'toggle.rcSwitcher', [ data, 'turnon' ] );
+			}, 500 );
+
 
 		},
 
@@ -565,19 +596,13 @@
 
 
 			// On Click on switchers
-			switcherP.$switchers.on( 'click', function( e ){
-			// $switcher.on( 'click', function( e ){
-
-				// console.log( e.currentTarget );
+			switcherP.$switchers.on( 'click', function( e )
+			{
 				var obj = {};
 
 				obj.type = e.currentTarget.getAttribute( 'input-type' );
 				obj.name = e.currentTarget.getAttribute( 'input-name' );
 				obj.value = e.currentTarget.getAttribute( 'input-value' );
-
-				// obj.type = $switcher.attr( 'input-type' );
-				// obj.name = $switcher.attr( 'input-name' );
-				// obj.value = $switcher.attr( 'input-value' );
 
 				// Toggle
 				this.toggle( obj, switcherP );
@@ -628,11 +653,11 @@
 		// Filter this
 		// Get Only Checkbox and Radio inputs only
 
-		switcherP.$this = this.filter( 'input[type=checkbox], input[type=radio]' );
+		switcherP.$this = this.filter( 'input[type=checkbox], input[type=radio]' ).not( '[data-has-rcswitcher]' );
 
 		// Stop if we havenot any checkboxs or radios
 		if( switcherP.$this.length == 0 )
-			return;
+			return this;
 
 		switcherP.cssValues.dir = window.getComputedStyle( switcherP.$this[0], null ).direction || 'ltr';
 
@@ -672,7 +697,6 @@
 		// Start
 		switcherM.start( switcherP, options );
 
-		
 		// Return selected jquery object to allow chaining
 		return this;
 
